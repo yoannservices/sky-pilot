@@ -1,8 +1,8 @@
-# Simulateur Avion (Horizon)
+# Sky Pilot (Horizon)
 
 Simulateur de vol 3D dans le navigateur : F-35B et PV-40 à aile basculante, relief, météo, vol libre.
 
-**▶ Démo en ligne : [https://yoannservices.github.io/simulateur-avion/](https://yoannservices.github.io/simulateur-avion/)**
+**▶ Démo en ligne : [https://yoannservices.github.io/sky-pilot/](https://yoannservices.github.io/sky-pilot/)**
 
 ## Fonctionnalités
 
@@ -38,7 +38,7 @@ Aucune installation : ouvrez `index.html` dans un navigateur, ou servez le dossi
 python -m http.server 8000
 ```
 
-puis allez sur http://localhost:8000 (dans le dossier `web/` de Mes Projets : http://localhost:8000/loisirs/simulateur-avion/).
+puis allez sur http://localhost:8000 (dans le dossier `web/` de Mes Projets : http://localhost:8000/loisirs/sky-pilot/).
 
 ## Structure
 
@@ -51,4 +51,4 @@ HTML, CSS et JavaScript ; rendu 3D avec [Three.js](https://threejs.org/) r128 (c
 
 ---
 
-Fait partie de [Mes Projets](https://yoannservices.github.io/) · [Portfolio](https://yoannservices.github.io/Y.Portfolio/) · par [@yoannservices](https://github.com/yoannservices)
+Fait partie de [Mes Projets](https://yoannservices.github.io/) · [Portfolio](https://yoannservices.github.io/portfolio/) · par [@yoannservices](https://github.com/yoannservices)
