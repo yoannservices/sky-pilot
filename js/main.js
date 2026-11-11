@@ -428,17 +428,24 @@ function runwayTexture(a){const W=256,Hh=2048,c=document.createElement('canvas')
   x.fillText(n1,W/2,Hh-130);x.save();x.translate(W/2,130);x.rotate(Math.PI);x.fillText(n2,0,0);x.restore();
   const t=new THREE.CanvasTexture(c);t.anisotropy=8;return t}
 function buildAirports(){
+  const BK=BuildingKit(THREE),BKM=BK.materials({wall:'#cfd4d8',style:'concrete',frame:'#4b5560',glass:'#4c6a86',garage:'#c4573a'});
   const bm=new THREE.MeshLambertMaterial({color:0xcfd4d8}),dk=new THREE.MeshLambertMaterial({color:0x4b5560}),ro=new THREE.MeshLambertMaterial({color:0xc4573a});
   for(const a of AIRPORTS){
     const g=new THREE.Group();g.position.set(a.x,a.elev+.2,a.z);g.rotation.y=-a.hdg*Math.PI/180;scene.add(g);
     const rw=new THREE.Mesh(new THREE.PlaneGeometry(46,a.len).rotateX(-Math.PI/2),new THREE.MeshLambertMaterial({map:runwayTexture(a)}));
     rw.position.y=.05;g.add(rw);
     const ap=new THREE.Mesh(new THREE.PlaneGeometry(150,240).rotateX(-Math.PI/2),new THREE.MeshLambertMaterial({color:0x585b5f}));ap.position.set(150,.03,-a.len*.1);g.add(ap);
-    const tw=new THREE.Mesh(new THREE.BoxGeometry(70,14,28),bm);tw.position.set(190,7,-a.len*.1-70);g.add(tw);
-    const tr=new THREE.Mesh(new THREE.BoxGeometry(70,3,29),ro);tr.position.set(190,15.5,-a.len*.1-70);g.add(tr);
-    const tc=new THREE.Mesh(new THREE.CylinderGeometry(3,4,34,10),bm);tc.position.set(150,17,-a.len*.1-120);g.add(tc);
+    // bâtiments du kit commun (assets/building-kit.js) : aérogare à mur-rideau, fût de tour fenêtré, hangars à grande porte
+    const acc=BK.acc();
+    acc.at(190,0,-a.len*.1-70,0);BK.building(acc,{w:70,d:28,h:14,fh:4.5,gfh:5,roof:'flat',facade:'curtain',cell:2.5,mast:8,rand:rnd});
+    acc.at(150,0,-a.len*.1-120,0);BK.building(acc,{w:7,d:7,h:33.6,fh:3.36,roof:'flat',parapet:0.4,equip:false,door:'+z',win:[0.7,1.2],margin:1.6,bands:false,rand:rnd});
+    for(let i=0;i<3;i++){acc.at(150,0,a.len*.05+i*55,-Math.PI/2);BK.building(acc,{w:40,d:46,h:16,fh:16,roof:'flat',parapet:0.8,door:'-z',faces:['-z','+x','-x'],win:[2.6,1.2],bay:5,plinth:0.4,lintel:false,cornice:true,
+      openings:[{face:'+z',s:0,w:30,h:12,type:'garage'}],rand:rnd})}
+    g.add(BK.group(acc.geometries(),BKM));
+    const gal=new THREE.Mesh(new THREE.CylinderGeometry(7.6,7.6,0.3,10),dk);gal.position.set(150,34.15,-a.len*.1-120);g.add(gal);
     const cab=new THREE.Mesh(new THREE.CylinderGeometry(7,5,6,10),new THREE.MeshPhongMaterial({color:0x223344,shininess:80}));cab.position.set(150,37,-a.len*.1-120);g.add(cab);
-    for(let i=0;i<3;i++){const h=new THREE.Mesh(new THREE.BoxGeometry(46,16,40),dk);h.position.set(150,8,a.len*.05+i*55);g.add(h);const r=new THREE.Mesh(new THREE.BoxGeometry(48,2,42),ro);r.position.set(150,17,a.len*.05+i*55);g.add(r)}
+    for(let k=0;k<10;k++){const an=k/10*Math.PI*2+Math.PI/10,mu=new THREE.Mesh(new THREE.BoxGeometry(0.25,6,0.25),dk);mu.position.set(150+Math.cos(an)*6.05,37,-a.len*.1-120+Math.sin(an)*6.05);mu.rotation.z=0;g.add(mu)}   // montants de la vigie
+    const capR=new THREE.Mesh(new THREE.CylinderGeometry(7.4,7.4,0.6,10),dk);capR.position.set(150,40.3,-a.len*.1-120);g.add(capR);
     // feux de piste
     const lm=new THREE.MeshBasicMaterial({color:0xfff2c0,transparent:true,opacity:.3,fog:false});lightMats.push(lm);
     const lg=new THREE.InstancedMesh(new THREE.BoxGeometry(1.2,1,1.2),lm,Math.floor(a.len/40)*2+2);let k=0;const m=new THREE.Matrix4();
