@@ -47,11 +47,20 @@ puis allez sur http://localhost:8000 (dans le dossier `web/` de Mes Projets : ht
 
 ## Technologies
 
-HTML, CSS et JavaScript ; rendu 3D avec [Three.js](https://threejs.org/) r128 (chargé depuis un CDN). Sans étape de build.
+HTML, CSS et JavaScript ; rendu 3D avec [Three.js](https://threejs.org/) r186 (chargé depuis un CDN par `assets/three-compat.js`). Sans étape de build.
 
 ---
 
 Fait partie de [Mes Projets](https://yoannservices.github.io/) · [Portfolio](https://yoannservices.github.io/portfolio/) · par [@yoannservices](https://github.com/yoannservices)
+
+## Fiche technique
+
+Résumé de ce que fait le code, tenu à jour à chaque modification : le lire suffit pour vérifier une information sans relire tout le jeu.
+
+- **Code** : `js/main.js` (script classique).
+- **Avions** : `f35.glb` (andertan, longueur 15,5, yaw π) et `v22-osprey-tilt.glb` (PV-40, longueur 33) cadrés par `fitGLB(..., keepAxes)` ; train et tuyère découpés dans le modèle et animés.
+- **Caméras (C)** : 0 poursuite ; 1 cockpit (F-35 (0 ; 0,92 ; −3,55), PV-40 (−0,62 ; −0,25 ; −10,6)) ; 2 vue de côté (8 ; 2,6 ; 15) × échelle ; PV-40 seulement : 3 cabine (0,15 ; 0,1 ; −7,5) et 4 soute.
+- **Sauvegarde** : `horizon:aircraft`, `horizon:pvColor`.
 
 ## Crédits des modèles 3D
 

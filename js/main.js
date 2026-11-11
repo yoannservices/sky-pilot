@@ -1144,13 +1144,13 @@ const AIRCRAFT={
    cd0:.0175,cdSuper:.0075,wave:.008,k:.065,cla:5,clmax:1.35,gmax:13,
    vrot:48,vstall:44,pitchLo:.08,pitchHi:.47,pitchFast:.78,rollLo:1.2,rollHi:3.8,rollV:[80,260],yaw:.45,
    gearH:2.05,bellyH:1.15,hit:[[-8.2,-.2,3],[8.2,-.2,3],[0,0,-8.5],[0,.4,5.5,.5]],
-   camDist:21,camH:4.6,cockpit:[0,1,-4.85],tips:[[-8.3,-.2,3.4],[8.3,-.2,3.4]],exhaust:[0,0,7],shadow:22},
+   camDist:21,camH:4.6,cockpit:[0,.92,-3.55],tips:[[-8.3,-.2,3.4],[8.3,-.2,3.4]],exhaust:[0,0,7],shadow:22},
  pv40:{id:'pv40',name:'PV-40',kind:'tiltwing',
    tstat:12,tvtol:14.5,power:1080,                      // 4 turbopropulseurs : poussée statique 1,2 g (aile à plat) à 1,5 g (aile verticale)
    cd0:.0165,k:.05,cla:5.2,clmax:1.55,gmax:7,
    vrot:30,vstall:33,pitchLo:.1,pitchHi:.55,pitchFast:.35,rollLo:1,rollHi:2.6,rollV:[50,180],yaw:.45,
    gearH:3.05,bellyH:1.75,hit:[[-16.9,2.1,-1.6],[16.9,2.1,-1.6],[0,-.3,-16.6],[0,.45,12,.6],[0,1.5,16.6,.6]],
-   camDist:44,camH:9,cockpit:[-.62,1.18,-13.6],cabin:[.15,.42,-12.0],bay:[1.05,.8,-1.3],tips:[[-16.9,2,-1.2],[16.9,2,-1.2]],exhaust:null,shadow:40}
+   camDist:44,camH:9,cockpit:[-.62,-.25,-10.6],cabin:[.15,.1,-7.5],bay:[1.05,.8,-1.3],tips:[[-16.9,2,-1.2],[16.9,2,-1.2]],exhaust:null,shadow:40}
 };
 let ACF=AIRCRAFT.f35;
 const TILT_RATE=.27;   // vitesse de basculement de l'aile (≈ 15°/s)
@@ -1430,7 +1430,7 @@ function updateCamera(dt,time){
     else if(camMode>=3){   // PV-40 : cabine puis soute, regard vers l'arrière
       _ro.fromArray(camMode===3?A.cabin:A.bay).applyQuaternion(cam.q);camera.position.copy(p).add(_ro);
       _qo.setFromAxisAngle(Y_AXIS,Math.PI-(camMode===3?.12:.18));camera.quaternion.copy(cam.q).multiply(_qo);camera.rotateX(-.1)}
-    else{_ro.set(5.5*ks,1.8*ks,9*ks);orbit(_ro,dt);_ro.applyQuaternion(cam.q);camera.position.copy(p).add(_ro);_qo.setFromAxisAngle(_xa,-.04);camera.quaternion.copy(cam.q).multiply(_qo);camera.rotateY(.3);orbitLook(p)}
+    else{_ro.set(8*ks,2.6*ks,15*ks);orbit(_ro,dt);_ro.applyQuaternion(cam.q);camera.position.copy(p).add(_ro);_qo.setFromAxisAngle(_xa,-.04);camera.quaternion.copy(cam.q).multiply(_qo);camera.rotateY(.3);orbitLook(p)}
     if(!inside){
       const sh=clamp((speed-70)/500,0,1)*.035+S.abL*.025+S.stall*.22+S.spin*.28+(S.G>5?.06:0);
       camera.position.x+=Math.sin(time*11)*sh;camera.position.y+=Math.sin(time*13+1)*sh;camera.rotateZ(Math.sin(time*9)*sh*.005);
