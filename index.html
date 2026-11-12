@@ -2,11 +2,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="assets/theme.css" />
-<link rel="stylesheet" href="assets/simulateur.css" />
-<script src="assets/loader.js" data-name="Sky Pilot" data-preload="../../assets/models/f35.glb|../../assets/models/v22-osprey-tilt.glb" data-controls="# Touches de base|Z S Q D / flèches : tangage et roulis|C : vues|R : recommencer à la piste|M : carte et destination|Échap : menu et pause|# Touches du jeu|A / E : palonnier|Maj / Ctrl : poussée (à 100 %, relâche puis Maj : boost)|Espace : freinage d’urgence|G : train · F : volets|T / Y / B / O : tuyères, aile, freins VTOL, portes|J : parachute|Tab : destination suivante|H : pilotage assisté|N : son"></script>
-<script src="assets/site.js" data-project="loisirs/sky-pilot/index.html"></script>
-<script src="assets/gamepad.js" data-profile="plane"></script>
+<link rel="stylesheet" href="./assets/theme.css" />
+<link rel="stylesheet" href="./assets/simulateur.css" />
+<script src="./assets/loader.js" data-name="Sky Pilot" data-preload="../../assets/models/f35.glb|../../assets/models/v22-osprey-tilt.glb" data-controls="# Touches de base|Z S Q D / flèches : tangage et roulis|C : vues|R : recommencer à la piste|M : carte et destination|Échap : menu et pause|# Touches du jeu|A / E : palonnier|Maj / Ctrl : poussée (à 100 %, relâche puis Maj : boost)|Espace : freinage d’urgence|G : train · F : volets|T / Y / B / O : tuyères, aile, freins VTOL, portes|J : parachute|Tab : destination suivante|H : pilotage assisté|N : son"></script>
+<script src="./assets/site.js" data-project="loisirs/sky-pilot/index.html"></script>
+<script src="./assets/gamepad.js" data-profile="plane"></script>
 <meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="stylesheet" href="style.css"></head><body>
 <title>Simulateur Horizon</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -34,10 +34,9 @@
   <input id="thr" type="range" min="0" max="100" value="0" aria-label="Poussée">
 </div>
 
-<div id="menu" class="ov" role="dialog" aria-label="Menu principal">
- <div class="wrap">
-  <h1>HORI<span>ZON</span></h1>
-  <p class="tag">Simulateur de vol libre. Décolle, passe entre les montagnes, fais des vrilles, pose-toi sur l'une des quatre pistes.</p>
+<div id="menu" class="ov hk-scrim" role="dialog" aria-label="Menu principal">
+ <div class="wrap hk-card">
+  <div class="hk-brief"><h1>Sky Pilot</h1><p>Simulateur de vol libre. Décolle, passe entre les montagnes, fais des vrilles, pose-toi sur l'une des quatre pistes.</p></div>
   <h2>Avion</h2>
   <div class="cards" id="accards"></div>
   <div id="pvColor" class="pvcolor" hidden>
@@ -63,7 +62,7 @@
     <button data-v="2" aria-pressed="false">Nuit</button>
   </div>
   <div class="row">
-    <button class="go" id="goBtn">DÉCOLLER</button>
+    <button class="go hk-btn hk-primary" id="goBtn">DÉCOLLER</button>
     <label class="chk"><input type="checkbox" id="assistChk" checked> Pilotage assisté (l'avion se remet à plat si tu lâches le manche)</label>
   </div>
   <div data-foot></div> <!-- Réglages + commandes : assets/quality.js (GameSettings.foot) -->
@@ -78,5 +77,5 @@
  </div>
 </div>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js"}}</script>
-<script type="module" src="assets/three-compat.js" data-scripts="assets/building-kit.js,js/main.js"></script>
+<script type="module" src="./assets/three-compat.js" data-scripts="./assets/building-kit.js,js/main.js"></script>
 </body></html>
